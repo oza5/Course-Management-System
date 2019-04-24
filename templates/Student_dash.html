@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<title>Student's Dashboard</title>
+		</head>
+		<body><style>
+            h2 {
+  text-align: left;
+}
+form#form1{
+  background:none;
+  border:none;
+  font-size:1em;
+  color:blue;
+}
+form {
+
+
+  position: relative;
+  width: 550px;
+  height: 350px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  padding: 10px;
+
+
+
+}
+
+input {
+  width: 375px;
+  display: block;
+  height: 25px;
+
+}
+
+textarea#feedback {
+  width: 310px;
+  height: 10px;
+  display: block;
+}
+
+
+button {
+  width: 150px;
+  position: marker;
+  right: 20px;
+  bottom: 40px;
+  background: #09C;
+  color: #fff;
+  font-family: Tahoma, Geneva, sans-serif;
+  height: 30px;
+
+
+}
+
+
+.dropdown {
+  position: relative;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+label#label1{
+
+  color: black;
+  font-weight: bold;
+  padding: 4px;
+  text-transform: uppercase;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
+
+        </style>
+			<h2>Welcome {{name}}!</h2>
+			<form action="{{url_for('insertPassword')}}" method="POST">
+				<input type="hidden" name="username" value={{email}}>
+					<label for="oldpassword">Your old password</label>
+					<input type="password" name="passw" value = {{password}} >
+						<label for="NewPassword">Enter new password</label>
+						<input type="text" name="NewPassword" required>
+							<button type="submit">Update</button>
+						</form>
+						<h2>Student Details</h2>
+						<table border = 1>
+							<tr>
+								<td> Full Name </td>
+								<td> Age </td>
+								<td> Gender </td>
+								<td> Major </td>
+								<td> Password </td>
+							</tr>
+         {% for full_name,age,gender,major,password in result %}
+            
+							<tr>
+								<td> {{ full_name }} </td>
+								<td> {{ age }} </td>
+								<td> {{ gender }} </td>
+								<td> {{ major }} </td>
+								<td> {{password}} </td>
+							</tr>
+         {%endfor%}
+
+    
+						</table>
+<br>
+								<form action="{{url_for('getCourseInfo')}}" method="POST">
+									<button type="submit">Click to view your Courses</button>
+								</form>
+								<br>
+
+                                <form action="{{url_for('getMygrades')}}" method="POST">
+
+
+                                    <br>
+									<button type="submit">Click to view your Course Grades</button>
+								</form>
+									<form action="{{url_for('logout')}}" method="POST">
+										<button type="submit">Click to Logout</button>
+									</form>
+								</body>
+							</html>

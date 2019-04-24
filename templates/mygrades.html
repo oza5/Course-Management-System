@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My grades</title>
+</head>
+<body style="background-color:powderblue;">
+<h2>Exam grades</h2>
+                                    <table border = 1>
+							<tr>
+								<td> Course </td>
+								<td> Section # </td>
+								<td> Exam # </td>
+								<td> Grades </td>
+							</tr>
+         {% for b,c,d,e in exams %}
+
+							<tr>
+								<td> {{b}} </td>
+								<td> {{ c }} </td>
+								<td> {{ d }} </td>
+								<td> {{e}} </td>
+							</tr>
+         {%endfor%}
+
+
+						</table>
+<br><br>
+<h2>Homework grades</h2>
+                                    <table border = 1>
+							<tr>
+								<td> Course </td>
+								<td> Section # </td>
+								<td> HW # </td>
+								<td> Grades </td>
+							</tr>
+         {% for b,c,d,e in HW %}
+
+							<tr>
+								<td> {{b}} </td>
+								<td> {{ c }} </td>
+								<td> {{ d }} </td>
+								<td> {{e}} </td>
+							</tr>
+         {%endfor%}
+
+
+						</table><br><br>
+
+<h2>Homework Statistics</h2>
+<form id = form1 action="{{url_for('getHWAvg')}}" method="POST">
+
+    <label for="course_name">Choose Course:</label>
+         <select name= course_name method="POST" action="/">
+            {% for name in course_name%}
+            <option value= "{{name}}" SELECTED>{{name}}</option>
+            "
+            {% endfor %}
+         </select>
+<br><br>
+<label for="new_course_sec">Choose Type:</label>
+         <select name= Type method="POST" action="/">
+            <option value="Highest"> Highest </option>
+            <option value="Lowest"> Lowest </option>
+             <option value="Average"> Average </option>
+         </select>
+    <br><br>
+<label for="password">Section Number:</label>
+					<input type="text" name="hw_sec_no" >
+<br><br>
+<label for="password">Homework Number:</label>
+					<input type="text" name="hw_no" >
+
+    <br><br>
+    <table border = 1>
+							<tr>
+								<td> Your Requested Statistic </td>
+
+							</tr>
+         {% for b in HwAvg %}
+
+							<tr>
+								<td> {{b}} </td>
+
+							</tr>
+         {%endfor%}
+    </table>
+<br><br>
+<button type="submit" name="submit" value="Get Result" >Get Result</button>
+</form>
+<br><br>
+
+<h2>Exam Statistics</h2>
+<form id = form1 action="{{url_for('getExamAvg')}}" method="POST">
+
+    <label for="course_name">Choose Course:</label>
+         <select name= course_name method="POST" action="/">
+            {% for name in course_name%}
+            <option value= "{{name}}" SELECTED>{{name}}</option>
+            "
+            {% endfor %}
+         </select>
+<br><br>
+<label for="new_course_sec">Choose Type:</label>
+         <select name= Type method="POST" action="/">
+            <option value="Highest"> Highest </option>
+            <option value="Lowest"> Lowest </option>
+             <option value="Average"> Average </option>
+         </select>
+    <br><br>
+<label for="password">Section Number:</label>
+					<input type="text" name="exam_sec_no" >
+<br><br>
+<label for="password">Exam Number:</label>
+					<input type="text" name="exam_no">
+
+    <br><br>
+    <table border = 1>
+							<tr>
+								<td> Your Requested Statistic </td>
+
+							</tr>
+         {% for b in Examavg %}
+
+							<tr>
+								<td> {{b}} </td>
+
+							</tr>
+         {%endfor%}
+    </table>
+<br><br>
+<button type="submit" name="submit" value="Get Result" >Get Result</button>
+</form>
+<br><br>
+<form id = form1 action="{{url_for('logout')}}" method="POST">
+
+         <button type="submit" name="submit" value="Click here to logout" >Logout</button>
+      </form>
+</body>
+</html>

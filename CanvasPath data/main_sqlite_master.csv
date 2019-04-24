@@ -1,0 +1,112 @@
+table,Student,Student,4,"CREATE TABLE ""Student""
+(
+	email text
+		constraint Students_pk
+			primary key,
+	password text,
+	name text,
+	age integer,
+	gender text,
+	major text,
+	street text,
+	zipcode text
+, password_reset boolean default false)"
+index,sqlite_autoindex_Student_1,Student,5,
+table,Department,Department,44,"CREATE TABLE ""Department""
+(
+	dept_id text
+		constraint Department_pk
+			primary key,
+	dept_name text,
+	dept_head text
+)"
+index,sqlite_autoindex_Department_1,Department,46,
+table,Professor,Professor,41,"CREATE TABLE ""Professor""
+(
+	email text
+		constraint Professor_pk
+			primary key,
+	password text,
+	name text,
+	age integer,
+	gender text,
+	office_address text,
+	department text,
+	title text
+, password_reset boolean default false)"
+index,sqlite_autoindex_Professor_1,Professor,42,
+table,Enrolls,Enrolls,45,"CREATE TABLE ""Enrolls""
+(
+	student_email text,
+	course_id text,
+	section_no integer,
+	constraint Enrolls_pk
+		primary key (course_id, student_email)
+)"
+index,sqlite_autoindex_Enrolls_1,Enrolls,53,
+table,Course,Course,37,"CREATE TABLE ""Course""
+(
+	course_id text
+		constraint Course_pk
+			primary key,
+	course_name text,
+	course_description text
+)"
+index,sqlite_autoindex_Course_1,Course,38,
+index,Course_course_id_uindex,Course,47,"CREATE UNIQUE INDEX Course_course_id_uindex
+	on Course (course_id)"
+table,Zipcode,Zipcode,48,"CREATE TABLE ""Zipcode""
+(
+	zipcode text
+		constraint Zipcode_pk
+			primary key,
+	city text,
+	state text
+)"
+index,sqlite_autoindex_Zipcode_1,Zipcode,50,
+index,Zipcode_zipcode_uindex,Zipcode,2,"CREATE UNIQUE INDEX Zipcode_zipcode_uindex
+	on Zipcode (zipcode)"
+table,Prof_teams,Prof_teams,129,"CREATE TABLE ""Prof_teams""
+(
+	teaching_team_id text
+		constraint Prof_teams_pk
+			unique
+)"
+index,sqlite_autoindex_Prof_teams_1,Prof_teams,130,
+table,Prof_team_members,Prof_team_members,122,"CREATE TABLE ""Prof_team_members""
+(
+	prof_email text,
+	teaching_team_id text
+		constraint Prof_team_members_pk
+			primary key
+)"
+index,sqlite_autoindex_Prof_team_members_1,Prof_team_members,131,
+table,Section,Section,126,"CREATE TABLE ""Section""
+(
+	course_id text,
+	sec_no integer,
+	section_type text,
+	section_limit integer
+, teaching_team_id int)"
+table,Homework,Homework,123,"CREATE TABLE ""Homework""
+(
+	course_id text,
+	sec_no double,
+	hw_no integer,
+	hw_details text,
+	constraint Homework_pk
+		primary key (sec_no, course_id, hw_no)
+)"
+index,sqlite_autoindex_Homework_1,Homework,125,
+table,Homework_grades,Homework_grades,133,"CREATE TABLE ""Homework_grades""
+(
+	student_email text,
+	course_id text,
+	sec_no integer,
+	hw_no integer,
+	grade double,
+	constraint Homework_grades_pk
+		unique (student_email, course_id, sec_no, hw_no)
+)"
+index,sqlite_autoindex_Homework_grades_1,Homework_grades,134,
+table,Exam,Exam,202,"CREATE TABLE Exam (course_id text, sec_no integer, exam_no integer, exam_details text)"

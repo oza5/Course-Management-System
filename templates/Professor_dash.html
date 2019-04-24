@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body><style>
+
+    h2 {
+  text-align: left;
+}
+
+form {
+  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+
+  position: relative;
+  width: 550px;
+  height: 350px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  padding: 10px;
+
+
+
+}
+form#1{
+
+  background: -webkit-linear-gradient(bottom, #ffffff, #EEEEEE 175px);
+  background: -moz-linear-gradient(bottom, #ffffff, #EEEEEE 175px);
+  background: linear-gradient(bottom, #ffffff, #EEEEEE 175px);
+
+  position: relative;
+  width: 550px;
+  height: 350px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  padding: 10px;
+
+}
+form#2{
+
+  background: -webkit-linear-gradient(bottom, #ffffff, #ffffff 175px);
+  background: -moz-linear-gradient(bottom, #ffffff, #ffffff 175px);
+  background: linear-gradient(bottom, #ffffff, #ffffff 175px);
+
+  position: relative;
+  width: 550px;
+  height: 350px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  padding: 10px;
+
+}
+input {
+  width: 375px;
+  display: block;
+  height: 25px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+textarea#feedback {
+  width: 310px;
+  height: 10px;
+  display: block;
+}
+
+
+button {
+  width: 150px;
+  position: marker;
+  right: 20px;
+  bottom: 40px;
+  background: #09C;
+  color: #fff;
+  font-family: Tahoma, Geneva, sans-serif;
+  height: 30px;
+
+
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+label#label1{
+
+  color: black;
+  font-weight: bold;
+  padding: 4px;
+  text-transform: uppercase;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
+
+</style>
+<h2>Welcome {{name}}!</h2>
+<h2><u>Professsor Details:</u></h2>
+						<table border = 1>
+							<tr>
+								<td> Email</td>
+								<td> Password </td>
+								<td> Name </td>
+								<td> Age </td>
+                                <td> Gender</td>
+                                <td>Office Address</td>
+								<td> Department </td>
+                                <td> Title </td>
+							</tr>
+         {% for email,password,name,age,gender,officeAddress,dept,title in prof_info %}
+
+							<tr>
+								<td> {{ email }} </td>
+								<td> {{ password }} </td>
+								<td> {{ name }} </td>
+								<td> {{age  }} </td>
+								<td> {{gender}} </td>
+                                <td> {{officeAddress}} </td>
+                                <td> {{dept}} </td>
+                                <td> {{title}} </td>
+							</tr>
+         {%endfor%}
+                        </table>
+<h2><u>Sections taught by professor:</u></h2>
+						<table border = 1>
+							<tr>
+								<td> Course</td>
+								<td> Section </td>
+								<td> Section Type </td>
+
+							</tr>
+         {% for course_id,sec_no,sec_type in sec_taught %}
+
+							<tr>
+								<td> {{ course_id }} </td>
+								<td> {{ sec_no }} </td>
+								<td> {{ sec_type }} </td>
+
+							</tr>
+         {%endfor%}
+                        </table>
+</table>
+<h2><u>Section Homeworks:</u></h2>
+						<table border = 1>
+							<tr>
+								<td> Course</td>
+								<td> Section </td>
+								<td> Homework number</td>
+                                <td> Homework details</td>
+
+							</tr>
+         {% for course,sec,hwn,hwd in sec_assign %}
+
+							<tr>
+								<td> {{ course }} </td>
+								<td> {{sec }} </td>
+								<td> {{ hwn }} </td>
+                                <td> {{ hwd }} </td>
+
+							</tr>
+         {%endfor%}
+                        </table>
+<br>
+<h2><u>Section Exams:</u></h2>
+						<table border = 1>
+							<tr>
+								<td> Course</td>
+								<td> Section </td>
+								<td>Exam number</td>
+                                <td> Exam details</td>
+
+							</tr>
+         {% for course,sec,hwn,hwd in sec_exams %}
+
+							<tr>
+								<td> {{ course }} </td>
+								<td> {{sec }} </td>
+								<td> {{ hwn }} </td>
+                                <td> {{ hwd }} </td>
+
+							</tr>
+         {%endfor%}
+                        </table>
+<br>
+<h2><u>Create New Assignment:</u></h2>
+<form method="POST" action="{{url_for('AddAssign')}}">
+
+    <label for="new_assign_course">Choose Course:</label>
+         <select name= course method="POST" action="/">
+           {% for course_id in secs%}
+            <option value= "{{course_id}}" SELECTED>{{course_id}}</option>
+            "
+            {% endfor %}
+         </select>
+    <br><br>
+<label for="new_assign_type">Choose Assignment Type (Exam/Homewok):</label>
+         <select name= assign_type method="POST" action="/">
+            <option value="Homework"> HW </option>
+            <option value="Exam"> Exam </option>
+         </select>
+        <br><br>
+<label for="new_assign_sec">Choose Section:</label>
+         <select name= sections method="POST" action="/">
+            <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
+         </select>
+<br><br>
+<label for="no">Enter Assignment number:</label>
+				<input type="text" name="no" required>
+<br><br>
+<button type="submit">Create Assignment!</button>
+</form>
+<br><br>
+<h2><u>Organize Teams(if capstone):</u></h2>
+<form method="POST" action="{{url_for('OTeam')}}">
+<label for="new_assign_course">Choose Course:</label>
+         <select name= course_name method="POST" action="/">
+           {% for course_id in secs%}
+            <option value= "{{course_id}}" SELECTED>{{course_id}}</option>
+            "
+            {% endfor %}
+         </select>
+<br><br>
+    <table border = 1>
+							<tr>
+                                <td>Section</td>
+								<td> Team number</td>
+								<td> Project number </td>
+
+
+							</tr>
+         {% for a,b,c in teams %}
+
+							<tr>
+                                <td>{{ a }}</td>
+								<td> {{ b }} </td>
+								<td> {{c }} </td>
+
+
+							</tr>
+         {%endfor%}
+                        </table>
+<br><br>
+<button type="submit">Show organized teams</button>
+</form>
+<br><br>
+<form id = "2" method="POST" action="{{url_for('AddGrades')}}">
+    <button type="submit">Add Grades</button>
+</form>
+<br><br>
+<form id = "1" action="{{url_for('logout')}}" method="POST">
+										<button type="submit">Click to Logout</button>
+									</form>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course details</title>
+</head>
+<body><style>
+    h2 {
+  text-align: left;
+}
+form#form1{
+  background:none;
+  border:none;
+  font-size:1em;
+  color:blue;
+}
+form#form1{
+    position: relative;
+  width: 550px;
+  height: 350px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  padding: 10px;
+
+}
+form {
+
+
+  position: relative;
+  width: 550px;
+  height: 350px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  padding: 10px;
+
+
+
+}
+
+input {
+  width: 375px;
+  display: block;
+  height: 25px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+textarea#feedback {
+  width: 310px;
+  height: 10px;
+  display: block;
+}
+
+
+button {
+  width: 150px;
+  position: marker;
+  right: 20px;
+  bottom: 40px;
+  background: #09C;
+  color: #fff;
+  font-family: Tahoma, Geneva, sans-serif;
+  height: 30px;
+
+
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+label#label1{
+
+  color: black;
+  font-weight: bold;
+  padding: 4px;
+  text-transform: uppercase;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+</style>
+
+<h1><u>Details for {{course}}, Section {{ section }}</u></h1>
+
+<h2><u>Course Information:</u></h2>
+{% for course_name,course_description in result %}
+
+							<tr>
+								<td> Name: {{ course_name}} </td>
+                                <br>
+								<td> Description: {{course_description }} </td>
+
+							</tr>
+{%endfor%}
+
+<h2><u>Instructors Information:</u></h2>
+{% for email,address,name in result2 %}
+
+							<tr>
+								<td> Professor Email : {{email}} </td>
+                                <br>
+								<td> Office address: {{ address }} </td>
+                                <br>
+                                <td> Name: {{ name }} </td>
+
+							</tr>
+{%endfor%}
+<br><br>
+ <label class = label for="course_name" id = label1 ><u>View Assignment Info:</u></label>
+       <table border = 1>
+					<tr>
+						<th>Course</th>
+						<th>Sec</th>
+                        <th>Exam #</th>
+                        <th>Exam details</th>
+
+					</tr>
+         {% for a,b,c,d in result3 %}
+
+					<tr>
+						<th>{{ a}} </th>
+                        <td> {{b }}</td>
+                        <td>{{ c }}</td>
+                     <td>{{ d }}</td>
+
+					</tr>
+         {% endfor %}
+
+				</table>
+<br><br>
+<table border = 1>
+					<tr>
+						<th>Course</th>
+						<th>Sec</th>
+                        <th>Homework #</th>
+                        <th>Homework details</th>
+
+					</tr>
+         {% for a,b,c,d in result4%}
+
+					<tr>
+						<th>{{ a}} </th>
+                        <td> {{b }}</td>
+                        <td>{{ c }}</td>
+                     <td>{{ d }}</td>
+
+					</tr>
+         {% endfor %}
+
+				</table>
+<form>
+  <input type="button" value="Go back!" onclick="history.back()">
+</form>
+
+</body>
+</html>
